@@ -9,6 +9,7 @@ public class EnemyOverworld : MonoBehaviour
     public bool multiplayer;
     [SerializeField] private bool edgeGuard;
     [SerializeField] private float maxDropDistance = 2.0f;
+    public float detectDistance = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +31,17 @@ public class EnemyOverworld : MonoBehaviour
         {
             GetClosestPlayer();
         }
-        EdgeGuard();
+        if (edgeGuard) 
+        {
+            EdgeGuard();
+        }
+        if ((Vector3.Distance(player.transform.position, transform.position)) < detectDistance)
+        {
+            MoveTowardsPlayer();
+
+        }
+
+
     }
     private void GetClosestPlayer()
     {
@@ -42,6 +53,19 @@ public class EnemyOverworld : MonoBehaviour
             { 
                 clostest = distance;
                 player = players[i];
+            }
+        }
+    }
+    private void MoveTowardsPlayer()
+    {
+        transform.LookAt(player.transform.position);
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+        {
+            if (!(hit.distance < 1.5f))
+            {
+                Debug.Log(hit.transform.gameObject.name);
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * 5.5f);
             }
         }
     }
