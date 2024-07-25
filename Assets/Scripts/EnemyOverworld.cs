@@ -59,14 +59,35 @@ public class EnemyOverworld : MonoBehaviour
     private void MoveTowardsPlayer()
     {
         transform.LookAt(player.transform.position);
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
+        RaycastHit hitForward;
+        RaycastHit hitLeft;
+        RaycastHit hitRight;
+        RaycastHit hitBack;
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hitForward, Mathf.Infinity))
         {
-            if (!(hit.distance < 1.5f))
+            if (!(hitForward.distance < 1.5f))
             {
-                Debug.Log(hit.transform.gameObject.name);
+                Debug.Log(hitForward.transform.gameObject.name);
                 transform.position = Vector3.MoveTowards(transform.position, player.transform.position, Time.deltaTime * 5.5f);
             }
+        }
+        Physics.Raycast(transform.position, transform.TransformDirection(Vector3.left), out hitLeft, Mathf.Infinity);
+        if (!(hitLeft.distance < 1.5f))
+        {
+            Debug.Log(hitLeft.transform.gameObject.name);
+            transform.position = Vector3.MoveTowards(transform.position, Vector3.left, Time.deltaTime * 5.5f);
+        }
+        Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hitRight, Mathf.Infinity);
+        if (!(hitRight.distance < 1.5f))
+        {
+            Debug.Log(hitRight.transform.gameObject.name);
+            transform.position = Vector3.MoveTowards(transform.position, Vector3.right, Time.deltaTime * 5.5f);
+        }
+        Physics.Raycast(transform.position, transform.TransformDirection(Vector3.back), out hitBack, Mathf.Infinity);
+        if (!(hitBack.distance < 1.5f))
+        {
+            Debug.Log(hitBack.transform.gameObject.name);
+            transform.position = Vector3.MoveTowards(transform.position, Vector3.back, Time.deltaTime * 5.5f);
         }
     }
     private void EdgeGuard()
