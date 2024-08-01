@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GAD176.ProjectRPG.Player
+namespace GAD176.ProjectRPG
 {
     public class PlayerStats : MonoBehaviour
     {
