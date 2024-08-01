@@ -6,10 +6,10 @@ namespace GAD176.ProjectRPG.Player
 {
     public class PlayerStats : MonoBehaviour
     {
-        [SerializeField] private float playerHealth;
-        [SerializeField] private float playerMaxHealth;
-        [SerializeField] private float playerAttackDamage;
-        [SerializeField] private float playerDefense;
+        [SerializeField] private float playerHealth; // player's current health value
+        [SerializeField] private float playerMaxHealth = 100f; // maximum health the player can have. can be altered by different items like armor, etc. default is 100
+        [SerializeField] private float playerAttackMultiplier; // multiplies the damage done by the weapon the player is using
+        [SerializeField] private float playerDefense; // a value that decreases the amount of damage the player takes
 
         public float GetPlayerHealth()
         {
@@ -30,14 +30,14 @@ namespace GAD176.ProjectRPG.Player
         {
             playerMaxHealth = setValue;
         }
-        public float GetPlayerAttackDamage()
+        public float GetPlayerAttackMultiplier()
         {
-            return playerAttackDamage;
+            return playerAttackMultiplier;
         }
 
-        public void SetPlayerAttackDamage(float setValue)
+        public void SetPlayerAttackMultiplier(float setValue)
         {
-            playerAttackDamage = setValue;
+            playerAttackMultiplier = setValue;
         }
 
         public float GetPlayerDefense()
