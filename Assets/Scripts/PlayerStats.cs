@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace ProjectRPG.Player
+namespace GAD176.ProjectRPG.Player
 {
     public class PlayerStats : MonoBehaviour
     {
         [SerializeField] private float playerHealth;
         [SerializeField] private float playerMaxHealth;
         [SerializeField] private float playerAttackDamage;
-        [SerializeField] private float playerDefence;
+        [SerializeField] private float playerDefense;
 
         public float GetPlayerHealth()
         {
@@ -40,14 +40,14 @@ namespace ProjectRPG.Player
             playerAttackDamage = setValue;
         }
 
-        public float GetPlayerDefence()
+        public float GetPlayerDefense()
         {
-            return playerDefence;
+            return playerDefense;
         }
 
-        public void SetPlayerDefence(float setValue)
+        public void SetPlayerDefense(float setValue)
         {
-            playerDefence = setValue;
+            playerDefense = setValue;
         }
 
 
