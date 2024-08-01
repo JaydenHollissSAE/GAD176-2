@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-namespace GAD176.ProjectRPG.Player
+namespace GAD176.ProjectRPG
 {
 
     public class PlayerAttack : MonoBehaviour
