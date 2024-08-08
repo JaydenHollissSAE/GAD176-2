@@ -7,26 +7,22 @@ namespace GAD176.ProjectRPG
 {
     public class EnemyOverworld : MonoBehaviour
     {
-        private GameObject player;
+        public GameObject player;
         public GameObject[] players;
         public bool multiplayer;
         [SerializeField] private bool edgeGuard;
         [SerializeField] private float maxDropDistance = 2.0f;
         public float detectDistance = 10f;
         [SerializeField] private NavMeshAgent agent;
+        public bool trackingOverride = false;
 
 
         // Start is called before the first frame update
         void Start()
         {
-            if (multiplayer)
-            {
-                players = GameObject.FindGameObjectsWithTag("Player");
-            }
-            else
-            {
-                player = GameObject.FindGameObjectWithTag("Player");
-            }
+
+            players = GameObject.FindGameObjectsWithTag("Player");
+            GetClosestPlayer();
         }
 
         // Update is called once per frame
@@ -34,7 +30,10 @@ namespace GAD176.ProjectRPG
         {
             if (multiplayer)
             {
-                GetClosestPlayer();
+                if (!trackingOverride)
+                {
+                    GetClosestPlayer();
+                }
             }
             if (edgeGuard)
             {
