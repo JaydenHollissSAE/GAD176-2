@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public GameObject InvView;
+    public GameObject BattleStatsView;
+    public GameObject BattleInvView;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +19,15 @@ public class UIManager : MonoBehaviour
     {
         
     }
-    public void InventoryButton()
+    public void BattleInvButton()
     {
         //function that is activated with the click of the inventory button
-        Debug.Log("Display Inventory");
+        //hides stats panel and shows inventory, or visceversa
+        BattleStatsView.SetActive(!BattleStatsView.activeInHierarchy);
+        BattleInvView.SetActive(!BattleInvView.activeInHierarchy);
+    }
+    public void OverworldInvButton()
+    {
+        InvView.SetActive(!InvView.activeInHierarchy);
     }
 }
