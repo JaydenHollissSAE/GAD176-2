@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Progress;
 
@@ -30,8 +31,21 @@ namespace GAD176.ProjectRPG
 
         private void Interact(GameObject item)
         {
-            if(hitObject.isInteract) { 
-                // logic to execute when interacted with
+            if (item != null)
+            {
+                if (item.GetComponent<InteractableItem>() != null)
+                {
+                    InteractableItem interacter = item.GetComponent<InteractableItem>();
+                    if (interacter.isInteractable)
+                    {
+                        // logic to execute when interacted with
+                        Debug.Log("intereacted");
+                    }
+                }
+                else
+                {
+                    Debug.Log("NULL OBJECT");
+                }
             }
         }
 
@@ -39,18 +53,20 @@ namespace GAD176.ProjectRPG
         {
             RaycastHit hit;
             // assumes a player camera exists; looks for an object 5m ahead
-            Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 5f, environmentItems);
-            GameObject hitObject = hit.transform.gameObject;
-            if (!hit.collider)
+            if(Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 5f, environmentItems))
+            {
+                GameObject hitObject = hit.transform.gameObject;
+                if (lastInteractable != hitObject)
+                {
+                    MakeUninteractable(lastInteractable);
+                    lastInteractable = hitObject;
+                }
+                MakeInteractable(hitObject);
+            } else
             {
                 lastInteractable = null;
             }
-            if (lastInteractable != hitObject)
-            {
-                MakeUninteractable(lastInteractable);
-                lastInteractable = hitObject;
-            }
-            MakeInteractable(hitObject);
+            
         }
 
         private void MakeInteractable(GameObject item)
