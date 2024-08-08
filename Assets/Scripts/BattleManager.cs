@@ -8,7 +8,7 @@ namespace GAD176.ProjectRPG
     {
         public List<GameObject> inBattleEnemies = new List<GameObject>();
         private GameManager gameManager;
-        private Enemy enemy;
+        //private Enemy enemy;
         private int enemyCount;
         // Start is called before the first frame update
         void Start()
@@ -17,10 +17,10 @@ namespace GAD176.ProjectRPG
             {
                 enemyCount = Random.Range(1, gameManager.maxEnemies);
             }
-            else
-            {
-                enemy = enemy.enemyCount;
-            }
+            //else
+            //{
+                //enemy = enemy.enemyCount;
+            //}
             for (int i = 0; i < enemyCount; i++)
             {
 

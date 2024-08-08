@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Stats : MonoBehaviour
+namespace GAD176.ProjectRPG
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Stats : MonoBehaviour
     {
-        
-    }
+        public string job;
+        public int maxHealth;
+        public int health;
+        public int healThreshold;
+        public int healingPower;
+        public int aoeDamage;
+        public int singleDamage;
+        public string status;
+        public string type;
+        public List<string> statusAttack = new List<string>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+
     }
 }
