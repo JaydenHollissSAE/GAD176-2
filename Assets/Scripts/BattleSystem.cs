@@ -10,7 +10,7 @@ namespace GAD176.ProjectRPG
     public class BattleSystem : MonoBehaviour
     {
         private int turnRotation = 0;
-        private List<GameObject> battleCharacters = new List<GameObject>();
+        [SerializeField] private List<GameObject> battleCharacters = new List<GameObject>();
         private List<GameObject> playerCharacters = new List<GameObject>();
         private List<GameObject> enemyCharacters = new List<GameObject>();
         private bool uiOpen;
@@ -37,6 +37,7 @@ namespace GAD176.ProjectRPG
                     enemyCharacters.Add(battleCharacters[i]);
                 }
             }
+            Turn();
         }
 
         // Update is called once per frame
