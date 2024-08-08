@@ -18,10 +18,25 @@ namespace GAD176.ProjectRPG
         private void Update()
         {
             CheckObjectInFront();
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                Interact(lastInteractable);
+            }
         }
+
+
+
         private void Interact(GameObject item)
         {
+            RaycastHit hit;
+            // assumes a player camera exists; looks for an object 5m ahead
+            Physics.Raycast(Player.camera.transform.position, Player.camera.transform.forward, out hit, 5f, environmentItems);
+            GameObject hitObject = hit.transform.gameObject;
 
+            if(hitObject != null && hitObject.interactable) { 
+                // logic to execute when interacted with
+            }
         }
 
         private void CheckObjectInFront()
