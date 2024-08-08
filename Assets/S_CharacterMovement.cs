@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
@@ -12,6 +13,14 @@ public class CharacterMovementScript : MonoBehaviour
     public float jumpSpeed;
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
+    /*[SerializeField] */
+    private Vector3 previousPos;
+    /*[SerializeField] */
+    private int movingStatusTracker = 0;
+    /*[SerializeField] */ 
+    private float movementSpeed;
+    /*[SerializeField] */
+    private int buffer = 0;
 
 
     public MovementState state;
@@ -20,9 +29,42 @@ public class CharacterMovementScript : MonoBehaviour
         walking,
         sprinting
     }
+    void start()
+    {
+        if (previousPos == null)
+        {
+            previousPos = transform.position;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
+
+
+        if (!(buffer < 200))
+        {
+            Debug.Log((Vector3.Distance(transform.position, previousPos)));
+            if (Vector3.Distance(transform.position, previousPos) != 0f)
+            {
+                movingStatusTracker += 1;
+            }
+            else
+            {
+                movingStatusTracker = 0;
+            }
+            buffer = 0;
+            previousPos = transform.position;
+        }
+        else
+        {
+            buffer += 1;
+        }
+
+
+
+
+
         //character movment
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
@@ -30,8 +72,16 @@ public class CharacterMovementScript : MonoBehaviour
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
         //grounded check
-        grounded = Physics.Raycast(transform.position, Vector3.down, )
+        //grounded = Physics.Raycast(transform.position, Vector3.down, );
 
+        if (movingStatusTracker >= 20)
+        {
+            movementSpeed = sprintSpeed;
+        }
+        else
+        {
+            movementSpeed = walkSpeed;
+        }
         
 
         //character orientation
@@ -42,16 +92,16 @@ public class CharacterMovementScript : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            controller.Move(moveDir.normalized * speed * Time.deltaTime);
+            controller.Move(moveDir.normalized * movementSpeed * Time.deltaTime);
 
         }
 
     }
     private void StateHandler()
     {
-        if grounded && Input.GetKey(KeyCode.LeftShift))
-        {
+        //if grounded && Input.GetKey(KeyCode.LeftShift))
+        //{
 
-        }
+        //}
     }
 }
