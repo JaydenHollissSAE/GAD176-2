@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 899865562019602316}
   - component: {fileID: 8160468993983019847}
   - component: {fileID: 671874899264844144}
-  - component: {fileID: 5720894697715388802}
+  - component: {fileID: 8789908461973694441}
+  - component: {fileID: 4682667679914283432}
   m_Layer: 0
   m_Name: P_InventoryTestItem3
   m_TagString: Untagged
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 5544694169185380405}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.35, y: 0.4, z: 0}
+  m_LocalPosition: {x: -3.6936264, y: 0.91, z: 6.8040175}
   m_LocalScale: {x: 0.34730235, y: 0.34730235, z: 0.34730235}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -108,30 +109,29 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!54 &5720894697715388802
-Rigidbody:
+--- !u!114 &8789908461973694441
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5544694169185380405}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b68f2c195a841a4086b24b9be944504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 5365112399096068663, guid: b6326aa575c453449b9c77b332752c8a, type: 3}
+--- !u!114 &4682667679914283432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5544694169185380405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da4d13d2f01c2944ad631e81279ab22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Item: {fileID: 5544694169185380405}
