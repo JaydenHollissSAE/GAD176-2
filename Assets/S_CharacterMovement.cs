@@ -21,6 +21,8 @@ public class CharacterMovementScript : MonoBehaviour
     private float movementSpeed;
     /*[SerializeField] */
     private int buffer = 0;
+    private Rigidbody rb;
+    private bool jumpBuffer = false;
 
 
     public MovementState state;
@@ -29,22 +31,39 @@ public class CharacterMovementScript : MonoBehaviour
         walking,
         sprinting
     }
-    void start()
+    void Start()
     {
         if (previousPos == null)
         {
             previousPos = transform.position;
         }
+        if (rb == null)
+        {
+            rb = GetComponent<Rigidbody>();
+            //Debug.Log(rb);
+        }
+        //Debug.Log(rb);
     }
 
     // Update is called once per frame
     void Update()
     {
 
+        if (Input.GetKeyDown(KeyCode.Space) && !jumpBuffer)
+        {
+            rb.AddForce(transform.up * 500f);
+            jumpBuffer = true;
+        }
+
+        else
+        {
+            jumpBuffer = false;
+        }
+
 
         if (!(buffer < 200))
         {
-            Debug.Log((Vector3.Distance(transform.position, previousPos)));
+            //Debug.Log((Vector3.Distance(transform.position, previousPos)));
             if (Vector3.Distance(transform.position, previousPos) != 0f)
             {
                 movingStatusTracker += 1;
