@@ -47,7 +47,7 @@ namespace GAD176.ProjectRPG
 
 
         }
-        private void GetClosestPlayer()
+        protected void GetClosestPlayer()
         {
             float clostest = 10000f;
             for (int i = 0; i < players.Length; i++)
