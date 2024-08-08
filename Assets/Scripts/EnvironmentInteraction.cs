@@ -9,10 +9,11 @@ namespace GAD176.ProjectRPG
     public class EnvironmentInteraction : MonoBehaviour
     {
         // assumes a class exists for environmental items
-        [SerializeField] private EnvironmentItems environmentItems;
+        [SerializeField] private InteractableItem interactableItem;
         // assumes a player class exists
-        [SerializeField] private Player player;
+        [SerializeField] private GameObject playerCamera;
         [SerializeField] private GameObject lastInteractable;
+        [SerializeField] private LayerMask environmentItems;
 
 
         private void Update()
@@ -29,12 +30,7 @@ namespace GAD176.ProjectRPG
 
         private void Interact(GameObject item)
         {
-            RaycastHit hit;
-            // assumes a player camera exists; looks for an object 5m ahead
-            Physics.Raycast(Player.camera.transform.position, Player.camera.transform.forward, out hit, 5f, environmentItems);
-            GameObject hitObject = hit.transform.gameObject;
-
-            if(hitObject != null && hitObject.interactable) { 
+            if(hitObject.isInteract) { 
                 // logic to execute when interacted with
             }
         }
@@ -43,7 +39,7 @@ namespace GAD176.ProjectRPG
         {
             RaycastHit hit;
             // assumes a player camera exists; looks for an object 5m ahead
-            Physics.Raycast(Player.camera.transform.position, Player.camera.transform.forward, out hit, 5f, environmentItems);
+            Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 5f, environmentItems);
             GameObject hitObject = hit.transform.gameObject;
             if (!hit.collider)
             {
