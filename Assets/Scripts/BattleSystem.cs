@@ -9,10 +9,10 @@ namespace GAD176.ProjectRPG
 {
     public class BattleSystem : MonoBehaviour
     {
-        private int turnRotation = 0;
-        [SerializeField] private List<GameObject> battleCharacters = new List<GameObject>();
+        public int turnRotation = 0;
+        public List<GameObject> battleCharacters = new List<GameObject>();
         private List<GameObject> playerCharacters = new List<GameObject>();
-        private List<GameObject> enemyCharacters = new List<GameObject>();
+        public List<GameObject> enemyCharacters = new List<GameObject>();
         private bool uiOpen;
         private GameObject enemyNeedsHealing;
         private GameObject enemyNeedsCuring;
@@ -20,6 +20,8 @@ namespace GAD176.ProjectRPG
         private List<GameObject> playersHighHealth = new List<GameObject>();
         private Stats stats;
         private Stats tmpCharacter;
+        private PlayerTurn playerTurn;
+        private int tmpSelected;
 
 
         // Start is called before the first frame update
@@ -37,6 +39,8 @@ namespace GAD176.ProjectRPG
                     enemyCharacters.Add(battleCharacters[i]);
                 }
             }
+            playerTurn = GetComponent<PlayerTurn>();
+            Debug.Log(playerTurn.existance);
             Turn();
         }
 
@@ -46,16 +50,19 @@ namespace GAD176.ProjectRPG
 
         }
 
-        private void Turn()
+        public void Turn()
         {
             stats = battleCharacters[turnRotation].GetComponent<Stats>();
             if (stats.type == "Player")
             {
+                playerTurn.stats = stats;
+                playerTurn.StartPlayerTurn();
                 //PlayerPhase();
                 Debug.Log("Player Moved");
             }
             else
             {
+                Debug.Log("Enemy Moved");
                 EnemyPhase();
             }
             if (turnRotation != battleCharacters.Count - 1)
@@ -67,10 +74,27 @@ namespace GAD176.ProjectRPG
             {
                 turnRotation = 0;
             }
-            Turn();
+            if (!playerTurn.playerTurnActive)
+            {
+                Turn();
+            }
         }
         private void EnemyPhase()
         {
+
+            Debug.Log(stats.type + " " + stats.job);
+            Debug.Log("Health = " + stats.health + "/" + stats.maxHealth);
+            if (stats.status != null)
+            {
+                Debug.Log("Status = " + stats.status);
+            }
+            else
+            {
+                Debug.Log("Status = Clear");
+            }
+
+
+
             if (stats.job == "Healer")
             {
                 EnemyHealer();
@@ -136,6 +160,11 @@ namespace GAD176.ProjectRPG
                         tmpCharacter = playersLowHealth[i].GetComponent<Stats>();
 
                         tmpCharacter.health -= stats.aoeDamage;
+                        if (tmpCharacter.health <= 0)
+                        {
+                            battleCharacters.Remove(playersLowHealth[i]);
+                            playerCharacters.Remove(playersLowHealth[i]);
+                        }
                     }
                     tmpCharacter = null;
 
@@ -145,6 +174,13 @@ namespace GAD176.ProjectRPG
                     tmpCharacter = playersLowHealth[0].GetComponent<Stats>();
 
                     tmpCharacter.health -= stats.singleDamage;
+
+                    if (tmpCharacter.health <= 0)
+                    {
+
+                        battleCharacters.Remove(playersLowHealth[0]);
+                        playerCharacters.Remove(playersLowHealth[0]);
+                    }
                     tmpCharacter = null;
                 }
                 else
@@ -157,14 +193,25 @@ namespace GAD176.ProjectRPG
                             {
                                 tmpCharacter = playerCharacters[i].GetComponent<Stats>();
                                 tmpCharacter.health -= stats.aoeDamage;
+                                if (tmpCharacter.health <= 0)
+                                {
+                                    battleCharacters.Remove(playerCharacters[i]);
+                                    playerCharacters.RemoveAt(i);
+                                }
                             }
                             tmpCharacter = null;
                         }
                     }
                     else
                     {
-                        tmpCharacter = playerCharacters[Random.Range(0, playerCharacters.Count())].GetComponent<Stats>();
+                        tmpSelected = Random.Range(0, playerCharacters.Count());
+                        tmpCharacter = playerCharacters[tmpSelected].GetComponent<Stats>();
                         tmpCharacter.health -= stats.singleDamage;
+                        if (tmpCharacter.health <= 0)
+                        {
+                            battleCharacters.Remove(playerCharacters[tmpSelected]);
+                            playerCharacters.RemoveAt(tmpSelected);
+                        }
 
                     }
 
@@ -192,6 +239,12 @@ namespace GAD176.ProjectRPG
                 {
                     tmpCharacter = playersLowHealth[i].GetComponent<Stats>();
                     tmpCharacter.health -= stats.aoeDamage;
+
+                    if (tmpCharacter.health <= 0)
+                    {
+                        battleCharacters.Remove(playersLowHealth[i]);
+                        playerCharacters.Remove(playersLowHealth[i]);
+                    }
                 }
                 tmpCharacter = null;
 
@@ -204,6 +257,11 @@ namespace GAD176.ProjectRPG
                     {
                         tmpCharacter = playerCharacters[i].GetComponent<Stats>();
                         tmpCharacter.health -= stats.aoeDamage;
+                    }
+                    if (tmpCharacter.health <= 0)
+                    {
+                        battleCharacters.Remove(playersLowHealth[i]);
+                        playerCharacters.Remove(playersLowHealth[i]);
                     }
                     tmpCharacter = null;
                 }
@@ -228,17 +286,30 @@ namespace GAD176.ProjectRPG
             }
             if (playersLowHealth.Count() > 0)
             {
-
-                tmpCharacter = playersLowHealth[Random.Range(0, playersLowHealth.Count())].GetComponent<Stats>();
+                tmpSelected = Random.Range(0, playersLowHealth.Count());
+                tmpCharacter = playersLowHealth[tmpSelected].GetComponent<Stats>();
                 tmpCharacter.health -= stats.singleDamage;
+
+                if (tmpCharacter.health <= 0)
+                {
+                    battleCharacters.Remove(playersLowHealth[tmpSelected]);
+                    playerCharacters.Remove(playersLowHealth[tmpSelected]);
+                }
                 tmpCharacter = null;
 
             }
             else
             {
-                tmpCharacter = playerCharacters[Random.Range(0, playerCharacters.Count())].GetComponent<Stats>();
+                tmpSelected = Random.Range(0, playerCharacters.Count());
+                tmpCharacter = playerCharacters[tmpSelected].GetComponent<Stats>();
+
                 tmpCharacter.health -= stats.singleDamage;
 
+                if (tmpCharacter.health <= 0)
+                {
+                    battleCharacters.Remove(playerCharacters[tmpSelected]);
+                    playerCharacters.RemoveAt(tmpSelected);
+                }
 
 
                 tmpCharacter = null;

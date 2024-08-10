@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 286341092}
   - component: {fileID: 286341091}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: Enemy 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 906498630}
   - component: {fileID: 906498629}
   m_Layer: 0
-  m_Name: GameObject (5)
+  m_Name: Enemy 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 1206935050}
   - component: {fileID: 1206935049}
   m_Layer: 0
-  m_Name: GameObject (3)
+  m_Name: Enemy 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -481,8 +481,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1284310356}
   - component: {fileID: 1284310355}
+  - component: {fileID: 1284310357}
   m_Layer: 0
-  m_Name: GameObject (6)
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -507,6 +508,7 @@ MonoBehaviour:
   - {fileID: 1206935048}
   - {fileID: 2048089743}
   - {fileID: 906498628}
+  enemyCharacters: []
 --- !u!4 &1284310356
 Transform:
   m_ObjectHideFlags: 0
@@ -522,6 +524,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1284310357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284310354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b472ef85d3b02e74b9349173e3756207, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTurnActive: 0
+  stats: {fileID: 0}
+  existance: PlayerTurn Exists!!!
 --- !u!1 &1744667499
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,7 +550,7 @@ GameObject:
   - component: {fileID: 1744667501}
   - component: {fileID: 1744667500}
   m_Layer: 0
-  m_Name: GameObject (2)
+  m_Name: Enemy 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -587,7 +604,7 @@ GameObject:
   - component: {fileID: 1897325675}
   - component: {fileID: 1897325674}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Player 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -641,7 +658,7 @@ GameObject:
   - component: {fileID: 2048089745}
   - component: {fileID: 2048089744}
   m_Layer: 0
-  m_Name: GameObject (4)
+  m_Name: Enemy 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
