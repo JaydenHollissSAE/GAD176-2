@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class S_EnemyHealth : MonoBehaviour
+public class Stats : MonoBehaviour
 {
     public int maxHealth = 3;
     public int currentHealth;
+    public int attack;
+    public int armor;
 
     
 
@@ -23,6 +25,11 @@ public class S_EnemyHealth : MonoBehaviour
         {
             currentHealth -= 1;
         }
+        if //(however attacking works)
+        {
+            //armor here
+            currentHealth -= attack;
+        }
        
         //Delete enemy model on death
         if (currentHealth <= 0)
@@ -30,6 +37,7 @@ public class S_EnemyHealth : MonoBehaviour
             Destroy(gameObject);
         }
     }
+   
 
     public void TakeDamage(int amount)
     {
