@@ -9,20 +9,20 @@ namespace GAD176.ProjectRPG
         private GameManager gameManager;
         private GameObject currentModel;
         private BattleManager battleManager;
-        private Enemy enemy;
+        //private Enemy enemy;
         // Start is called before the first frame update
-        void Start()
-        {
-            if (gameManager.randomisedEnemies == true)
-            {
-                currentModel = gameManager.enemiesList[Random.Range(0, gameManager.enemiesList.Count())];
-            }
-            else
-            {
-                currentModel = enemy.enemiesList[0];
-            }
-            Instantiate(currentModel, transform);
-            battleManager.inBattleEnemies.Add(currentModel);
-        }
+        //void Start()
+        //{
+        //    if (gameManager.randomisedEnemies == true)
+        //    {
+        //        currentModel = gameManager.enemiesList[Random.Range(0, gameManager.enemiesList.Count())];
+        //    }
+        //    else
+        //    {
+        //        currentModel = enemy.enemiesList[0];
+        //    }
+        //    Instantiate(currentModel, transform);
+        //    battleManager.inBattleEnemies.Add(currentModel);
+        //}
     }
 }
