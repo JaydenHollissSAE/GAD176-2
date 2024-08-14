@@ -8,13 +8,15 @@ public class Stats : MonoBehaviour
     public int currentHealth;
     public int attack;
     public int armor;
-
+    public int speed;
+    public bool isTargetable = true;
     
 
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
+        isTargetable = true;
     }
 
     // Update is called once per frame
@@ -25,12 +27,7 @@ public class Stats : MonoBehaviour
         {
             currentHealth -= 1;
         }
-        if //(however attacking works)
-        {
-            //armor here
-            currentHealth -= attack;
-        }
-       
+
         //Delete enemy model on death
         if (currentHealth <= 0)
         {
@@ -45,6 +42,13 @@ public class Stats : MonoBehaviour
         //currentHealth -= amount;
        
            
+    }
+    public float CalculateDamage(float amount)
+    {
+        float armoredHealth = amount - (amount * (armor / currentHealth));
+        Mathf.Round(attack);
+       
+        return attack;
     }
     
 
