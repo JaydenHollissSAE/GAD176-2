@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IAttack
 {
-    void PhysicalAttack(float damage, int attackingIndex);
-    void MagicAttack(float damage, int attackingIndex);
+    void PhysicalAttack(float damage);
+    void MagicAttack(float damage);
 }
