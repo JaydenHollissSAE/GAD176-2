@@ -13,12 +13,12 @@ namespace GAD176.ProjectRPG
         [SerializeField] private bool edgeGuard;
         [SerializeField] private float maxDropDistance = 2.0f;
         public float detectDistance = 10f;
-        [SerializeField] private NavMeshAgent agent;
+        [SerializeField] public NavMeshAgent agent;
         public bool trackingOverride = false;
 
 
         // Start is called before the first frame update
-        void Start()
+        public void Start()
         {
 
             players = GameObject.FindGameObjectsWithTag("Player");
