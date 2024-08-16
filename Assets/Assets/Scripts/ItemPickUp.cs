@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class S_ItemPickUp : MonoBehaviour
+public class ItemPickUp : MonoBehaviour
 {
-    public GameObject Item;
+    public Item Item;
     
     void Pickup()
     {
-        S_InventoryManager.Instance.Add(Item);
+        InventoryManager.Instance.Add(Item);
         Destroy(gameObject);
     }
 
