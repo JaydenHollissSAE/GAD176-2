@@ -43,7 +43,7 @@ public class Stats : MonoBehaviour
        
            
     }
-    public float CalculateDamage(float amount)
+    protected float CalculateDamage(float amount)
     {
         float armoredHealth = amount - (amount * (armor / currentHealth));
         Mathf.Round(attack);
