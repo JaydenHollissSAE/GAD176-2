@@ -18,12 +18,14 @@ namespace GAD176.ProjectRPG
         public bool randomisedEnemies = false;
         public List<GameObject> enemiesList = new List<GameObject>();
         public int maxEnemies;
+        public UnityEvent loadBattle; 
 
         void Awake()
         {
             if (inst == null)
             {
                 inst = this;
+                DontDestroyOnLoad(inst);
             }
             else
             {

@@ -10,23 +10,40 @@ namespace GAD176.ProjectRPG
         private GameManager gameManager;
         //private Enemy enemy;
         private int enemyCount;
+        private List<GameObject> tmpObjects = new List<GameObject>();
+
+
         // Start is called before the first frame update
         void Start()
         {
-            if (gameManager.randomisedEnemies == true)
-            {
-                enemyCount = Random.Range(1, gameManager.maxEnemies);
-            }
-            //else
-            //{
-                //enemy = enemy.enemyCount;
-            //}
-            for (int i = 0; i < enemyCount; i++)
-            {
 
-            }
 
         }
+
+
+
+        private void SetSpeed()
+        {
+            while (tmpObjects.Count > 1)
+            {
+
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // Update is called once per frame
         void Update()
