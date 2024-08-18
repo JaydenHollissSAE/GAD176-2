@@ -18,13 +18,26 @@ namespace GAD176.ProjectRPG
             {
                 currentModel = gameManager.enemiesList[Random.Range(0, gameManager.enemiesList.Count)];
             }
-            else
-            {
+            //else
+            //{
                 //currentModel = enemy.enemiesList[0];
                 //Sets currentModel based on the enemyList threaded through from Enemy.
-            }
+            //}
             Instantiate(currentModel, transform);
             battleManager.inBattleEnemies.Add(currentModel);
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
