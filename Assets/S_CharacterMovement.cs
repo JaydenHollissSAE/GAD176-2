@@ -24,6 +24,9 @@ public class CharacterMovementScript : MonoBehaviour
     private Rigidbody rb;
     private bool jumpBuffer = false;
 
+    Ray ray;
+    RaycastHit hit;
+
 
     public MovementState state;
     public enum MovementState
@@ -41,8 +44,11 @@ public class CharacterMovementScript : MonoBehaviour
         {
             rb = GetComponent<Rigidbody>();
             //Debug.Log(rb);
+
         }
         //Debug.Log(rb);
+        ray = new Ray(transform.position, transform.forward);
+        CheckForColliders();
     }
 
     // Update is called once per frame
@@ -116,6 +122,16 @@ public class CharacterMovementScript : MonoBehaviour
         }
 
     }
+
+    void CheckForColliders()
+    {
+        if (Physics.Raycast(ray, out hit))
+
+        {
+            Debug.Log(hit.collider.gameObject.name + "something was hit");
+        }
+    }
+       
     private void StateHandler()
     {
         //if grounded && Input.GetKey(KeyCode.LeftShift))
