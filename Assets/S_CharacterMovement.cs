@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class CharacterMovementScript : MonoBehaviour
+public class S_CharacterMovementScript : MonoBehaviour
 {
     public CharacterController controller;
     public Transform cam;

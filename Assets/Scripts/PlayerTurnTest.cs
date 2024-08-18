@@ -6,12 +6,12 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 namespace GAD176.ProjectRPG
 {
-    public class PlayerTurn : MonoBehaviour
+    public class PlayerTurnTest : MonoBehaviour
     {
-        private BattleSystem battleSystem;
+        private BattleSystemTest battleSystem;
         public bool playerTurnActive = false;
-        public Stats stats;
-        private Stats tmpCharacter;
+        public StatsTest stats;
+        private StatsTest tmpCharacter;
         public string existance = "PlayerTurn Exists!!!";
         private bool showControls = false;
         private bool showStats = false;
@@ -21,7 +21,7 @@ namespace GAD176.ProjectRPG
         void Start()
         {
             Debug.Log("I am working");
-            battleSystem = GetComponent<BattleSystem>();
+            battleSystem = GetComponent<BattleSystemTest>();
         }
 
         // Update is called once per frame
@@ -94,7 +94,7 @@ namespace GAD176.ProjectRPG
             else if (Input.GetKeyDown(KeyCode.E))
             {
                 tmpSelected = Random.Range(0, battleSystem.enemyCharacters.Count);
-                tmpCharacter = battleSystem.enemyCharacters[tmpSelected].GetComponent<Stats>();
+                tmpCharacter = battleSystem.enemyCharacters[tmpSelected].GetComponent<StatsTest>();
                 tmpCharacter.status = "Poison";
                 tmpCharacter = null;
                 TurnFinish();
@@ -105,7 +105,7 @@ namespace GAD176.ProjectRPG
                 {
                     if (Random.Range(1, 5) == 2)
                     {
-                        tmpCharacter = battleSystem.enemyCharacters[i].GetComponent<Stats>();
+                        tmpCharacter = battleSystem.enemyCharacters[i].GetComponent<StatsTest>();
                         tmpCharacter.health -= stats.aoeDamage;
 
                         if (tmpCharacter.health <= 0)
@@ -121,7 +121,7 @@ namespace GAD176.ProjectRPG
             else if (Input.GetKeyDown(KeyCode.T))
             {
                 tmpSelected = Random.Range(0, battleSystem.enemyCharacters.Count);
-                tmpCharacter = battleSystem.enemyCharacters[tmpSelected].GetComponent<Stats>();
+                tmpCharacter = battleSystem.enemyCharacters[tmpSelected].GetComponent<StatsTest>();
                 tmpCharacter.health -= stats.singleDamage;
                 if (tmpCharacter.health <= 0)
                 {

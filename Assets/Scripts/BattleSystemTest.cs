@@ -7,7 +7,7 @@ using UnityEngine.TextCore.Text;
 
 namespace GAD176.ProjectRPG
 {
-    public class BattleSystem : MonoBehaviour
+    public class BattleSystemTest : MonoBehaviour
     {
         public int turnRotation = 0;
         public List<GameObject> battleCharacters = new List<GameObject>();
@@ -18,9 +18,9 @@ namespace GAD176.ProjectRPG
         private GameObject enemyNeedsCuring;
         private List<GameObject> playersLowHealth = new List<GameObject>();
         private List<GameObject> playersHighHealth = new List<GameObject>();
-        private Stats stats;
-        private Stats tmpCharacter;
-        private PlayerTurn playerTurn;
+        private StatsTest stats;
+        private StatsTest tmpCharacter;
+        private PlayerTurnTest playerTurn;
         private int tmpSelected;
 
 
@@ -29,7 +29,7 @@ namespace GAD176.ProjectRPG
         {
             for (int i = 0; i < battleCharacters.Count; i++)
             {
-                stats = battleCharacters[i].GetComponent<Stats>();
+                stats = battleCharacters[i].GetComponent<StatsTest>();
                 if (stats.type == "Player")
                 {
                     playerCharacters.Add(battleCharacters[i]);
@@ -39,7 +39,7 @@ namespace GAD176.ProjectRPG
                     enemyCharacters.Add(battleCharacters[i]);
                 }
             }
-            playerTurn = GetComponent<PlayerTurn>();
+            playerTurn = GetComponent<PlayerTurnTest>();
             Debug.Log(playerTurn.existance);
             Turn();
         }
@@ -52,7 +52,7 @@ namespace GAD176.ProjectRPG
 
         public void Turn()
         {
-            stats = battleCharacters[turnRotation].GetComponent<Stats>();
+            stats = battleCharacters[turnRotation].GetComponent<StatsTest>();
             if (stats.type == "Player")
             {
                 playerTurn.stats = stats;
@@ -117,7 +117,7 @@ namespace GAD176.ProjectRPG
         {
             for (int i = 0; i < enemyCharacters.Count; i++)
             {
-                tmpCharacter = enemyCharacters[i].GetComponent<Stats>();
+                tmpCharacter = enemyCharacters[i].GetComponent<StatsTest>();
                 if (tmpCharacter.health < tmpCharacter.healThreshold)
                 {
                     enemyNeedsHealing = enemyCharacters[i];
@@ -130,14 +130,14 @@ namespace GAD176.ProjectRPG
             }
             if (enemyNeedsHealing != null)
             {
-                tmpCharacter = enemyNeedsHealing.GetComponent<Stats>();
+                tmpCharacter = enemyNeedsHealing.GetComponent<StatsTest>();
                 tmpCharacter.health += stats.healingPower;
                 tmpCharacter = null;
                 enemyNeedsHealing = null;
             }
             else if (enemyNeedsCuring != null)
             {
-                tmpCharacter = enemyNeedsCuring.GetComponent<Stats>();
+                tmpCharacter = enemyNeedsCuring.GetComponent<StatsTest>();
                 tmpCharacter.status = null;
                 tmpCharacter = null;
                 enemyNeedsCuring = null;
@@ -146,7 +146,7 @@ namespace GAD176.ProjectRPG
             {
                 for (int i = 0; i < playerCharacters.Count; i++)
                 {
-                    tmpCharacter = playerCharacters[i].GetComponent<Stats>();
+                    tmpCharacter = playerCharacters[i].GetComponent<StatsTest>();
                     if (tmpCharacter.health <= tmpCharacter.maxHealth / 4)
                     {
                         playersLowHealth.Add(playerCharacters[i]);
@@ -157,7 +157,7 @@ namespace GAD176.ProjectRPG
                 {
                     for (int i = 0; i < playersLowHealth.Count; i++)
                     {
-                        tmpCharacter = playersLowHealth[i].GetComponent<Stats>();
+                        tmpCharacter = playersLowHealth[i].GetComponent<StatsTest>();
 
                         tmpCharacter.health -= stats.aoeDamage;
                         if (tmpCharacter.health <= 0)
@@ -171,7 +171,7 @@ namespace GAD176.ProjectRPG
                 }
                 else if (playersLowHealth.Count() == 1)
                 {
-                    tmpCharacter = playersLowHealth[0].GetComponent<Stats>();
+                    tmpCharacter = playersLowHealth[0].GetComponent<StatsTest>();
 
                     tmpCharacter.health -= stats.singleDamage;
 
@@ -191,7 +191,7 @@ namespace GAD176.ProjectRPG
                         {
                             if (Random.Range(1, 5) == 2)
                             {
-                                tmpCharacter = playerCharacters[i].GetComponent<Stats>();
+                                tmpCharacter = playerCharacters[i].GetComponent<StatsTest>();
                                 tmpCharacter.health -= stats.aoeDamage;
                                 if (tmpCharacter.health <= 0)
                                 {
@@ -205,7 +205,7 @@ namespace GAD176.ProjectRPG
                     else
                     {
                         tmpSelected = Random.Range(0, playerCharacters.Count());
-                        tmpCharacter = playerCharacters[tmpSelected].GetComponent<Stats>();
+                        tmpCharacter = playerCharacters[tmpSelected].GetComponent<StatsTest>();
                         tmpCharacter.health -= stats.singleDamage;
                         if (tmpCharacter.health <= 0)
                         {
@@ -226,7 +226,7 @@ namespace GAD176.ProjectRPG
         {
             for (int i = 0; i < playerCharacters.Count; i++)
             {
-                tmpCharacter = playerCharacters[i].GetComponent<Stats>();
+                tmpCharacter = playerCharacters[i].GetComponent<StatsTest>();
                 if (tmpCharacter.health <= tmpCharacter.maxHealth / 4)
                 {
                     playersLowHealth.Add(playerCharacters[i]);
@@ -237,7 +237,7 @@ namespace GAD176.ProjectRPG
             {
                 for (int i = 0; i < playersLowHealth.Count; i++)
                 {
-                    tmpCharacter = playersLowHealth[i].GetComponent<Stats>();
+                    tmpCharacter = playersLowHealth[i].GetComponent<StatsTest>();
                     tmpCharacter.health -= stats.aoeDamage;
 
                     if (tmpCharacter.health <= 0)
@@ -255,7 +255,7 @@ namespace GAD176.ProjectRPG
                 {
                     if (Random.Range(1, 5) == 2)
                     {
-                        tmpCharacter = playerCharacters[i].GetComponent<Stats>();
+                        tmpCharacter = playerCharacters[i].GetComponent<StatsTest>();
                         tmpCharacter.health -= stats.aoeDamage;
                     }
                     if (tmpCharacter.health <= 0)
@@ -277,7 +277,7 @@ namespace GAD176.ProjectRPG
         {
             for (int i = 0; i < playerCharacters.Count; i++)
             {
-                tmpCharacter = playerCharacters[i].GetComponent<Stats>();
+                tmpCharacter = playerCharacters[i].GetComponent<StatsTest>();
                 if (tmpCharacter.health <= tmpCharacter.maxHealth / 4)
                 {
                     playersLowHealth.Add(playerCharacters[i]);
@@ -287,7 +287,7 @@ namespace GAD176.ProjectRPG
             if (playersLowHealth.Count() > 0)
             {
                 tmpSelected = Random.Range(0, playersLowHealth.Count());
-                tmpCharacter = playersLowHealth[tmpSelected].GetComponent<Stats>();
+                tmpCharacter = playersLowHealth[tmpSelected].GetComponent<StatsTest>();
                 tmpCharacter.health -= stats.singleDamage;
 
                 if (tmpCharacter.health <= 0)
@@ -301,7 +301,7 @@ namespace GAD176.ProjectRPG
             else
             {
                 tmpSelected = Random.Range(0, playerCharacters.Count());
-                tmpCharacter = playerCharacters[tmpSelected].GetComponent<Stats>();
+                tmpCharacter = playerCharacters[tmpSelected].GetComponent<StatsTest>();
 
                 tmpCharacter.health -= stats.singleDamage;
 
@@ -322,7 +322,7 @@ namespace GAD176.ProjectRPG
         {
             for (int i = 0; i < playerCharacters.Count; i++)
             {
-                tmpCharacter = playerCharacters[i].GetComponent<Stats>();
+                tmpCharacter = playerCharacters[i].GetComponent<StatsTest>();
                 if (tmpCharacter.health <= tmpCharacter.maxHealth / 4)
                 {
                     playersLowHealth.Add(playerCharacters[i]);
@@ -332,12 +332,12 @@ namespace GAD176.ProjectRPG
             if (playersHighHealth.Count() > 0)
             {
 
-                tmpCharacter = playersHighHealth[Random.Range(0, playersHighHealth.Count())].GetComponent<Stats>();
+                tmpCharacter = playersHighHealth[Random.Range(0, playersHighHealth.Count())].GetComponent<StatsTest>();
                 tmpCharacter.status = stats.statusAttack[Random.Range(0, stats.statusAttack.Count())];
             }
             else
             {
-                tmpCharacter = playerCharacters[Random.Range(0, playerCharacters.Count())].GetComponent<Stats>();
+                tmpCharacter = playerCharacters[Random.Range(0, playerCharacters.Count())].GetComponent<StatsTest>();
                 tmpCharacter.status = stats.statusAttack[Random.Range(0, stats.statusAttack.Count())];
 
                 tmpCharacter = null;

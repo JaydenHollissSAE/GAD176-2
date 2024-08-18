@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace GAD176.ProjectRPG
 {
-    public class Stats : MonoBehaviour
+    public class StatsTest : MonoBehaviour
     {
         public string job; //
         public int maxHealth; //
