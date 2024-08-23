@@ -10,6 +10,7 @@ public class UIRaycaster : MonoBehaviour
     GraphicRaycaster Ray;
     PointerEventData CursorData;
     public TMP_Text SkillStatDisplay;
+    public string currentRay;
 
     // Start is called before the first frame update
     void Start()
@@ -28,19 +29,21 @@ public class UIRaycaster : MonoBehaviour
         Ray.Raycast(CursorData, results);
         foreach (RaycastResult result in results)
         {
+            currentRay = result.gameObject.name;
+            //Debug.Log(currentRay);
             //Debug.Log(result.gameObject.name);
-            if (result.gameObject.name == "SkillButton1")
+            if (result.gameObject.name == "SkillText1")
             {
                 SkillStatDisplay.text = ("Displaying Stats 1");
-                Debug.Log("Skill1Hit");
+               // Debug.Log("Skill1Hit");
             } else if (result.gameObject.name == "SkillButton2")
             {
                 SkillStatDisplay.text = ("Displaying Stats 2");
-                Debug.Log("Skill2Hit");
+               // Debug.Log("Skill2Hit");
             } else if (result.gameObject.name == "SkillButton3")
             {
                 SkillStatDisplay.text = ("Displaying Stats 3");
-                Debug.Log("Skill3Hit");
+                //Debug.Log("Skill3Hit");
             }
         }
     }
